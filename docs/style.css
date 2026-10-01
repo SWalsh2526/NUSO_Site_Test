@@ -20,6 +20,7 @@ nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
 }
 
 body {
@@ -37,6 +38,10 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+
+.homebutton {
+    padding:  10px 10px;
 }
 
 .info-text {
@@ -210,6 +215,10 @@ img {
   .buttondiv {
       gap: 30px;
       justify-content: center;
+  }
+
+  .homebutton {
+      padding: 5px 5px;
   }
 
 }
