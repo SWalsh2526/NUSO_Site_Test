@@ -1,0 +1,133 @@
+* {
+  box-sizing: border-box;
+}
+
+nav a {
+  color: white;
+  margin: 10px;
+  text-decoration: none;
+  font-size: 1.25em;
+}
+
+nav a:hover {
+  font-weight: bold;
+}
+
+body {
+  background-color: #260841;
+  color: #ffffff;
+}
+
+.maindiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.exec_container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.buttondiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  min-width: 600px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 50px;
+}
+
+.exec_image {
+  width: 80%;
+  height: 80%;
+}
+
+.exec {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  width: 500px;
+  gap: 1em;
+  padding: 50px 0px;
+}
+
+.gradientdiv {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding: 25px;
+  align-items: center;
+  border-radius: 1em;
+  background-image: linear-gradient(to bottom right,#4e2a84,#b6acd1);
+}
+
+.blackbutton {
+  background-color: black;
+}
+
+.blackbutton:hover {
+  background-color: white;
+  color: black;
+}
+
+button {
+  background-color: #937BA1;
+  padding: 10px 30px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  font-size: 15pt;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #B6ACD1;
+}
+
+.exec-container {
+  layout: 
+}
+
+hr {
+  border: 2px solid white;
+  width: 100%;
+}
+
+h1 {
+  font-size: 3.5em;
+  margin: 0px;
+}
+
+h2 {
+  font-size: 2.5em;
+  margin: 0px;
+}
+
+h3 {
+  font-size: 1.5em;
+  margin: 0px;
+}
+
+p {
+  font-size: 1.25em;
+}
+
+div.nav_div{
+  display: flex;
+  justify-content: space-between;
+}
