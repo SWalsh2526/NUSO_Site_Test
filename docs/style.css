@@ -2,15 +2,24 @@
   box-sizing: border-box;
 }
 
-nav a {
+a {
   color: white;
-  margin: 10px;
   text-decoration: none;
   font-size: 1.25em;
 }
 
-nav a:hover {
-  font-weight: bold;
+a:hover {
+    font-weight: bold;
+}
+
+nav a {
+  margin: 10px;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 body {
@@ -18,11 +27,20 @@ body {
   color: #ffffff;
 }
 
-.maindiv {
+.logo {
+    width: 80px;
+    height: auto;
+}
+
+.info {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+
+.info-text {
+    width: 60%;
 }
 
 .exec_container {
@@ -37,6 +55,7 @@ body {
 .buttondiv {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   gap: 50px;
 }
@@ -52,7 +71,7 @@ body {
 }
 
 .exec_image {
-  width: 80%;
+  max-width: 80%;
   height: auto;
 }
 
@@ -85,22 +104,23 @@ body {
   color: black;
 }
 
+.hide-mobile {
+    max-width: 30%;
+    max-height: 30%;
+}
+
 button {
   background-color: #937BA1;
+  font-size: 1em;
+  font-weight: bold;
   padding: 10px 30px;
   border-radius: 10px;
   border: none;
   color: white;
-  font-size: 15pt;
-  font-weight: bold;
 }
 
 button:hover {
   background-color: #B6ACD1;
-}
-
-.exec-container {
-  layout: 
 }
 
 hr {
@@ -120,6 +140,7 @@ h2 {
 
 h3 {
   font-size: 1.5em;
+  font-weight: bold;
   margin: 0px;
 }
 
@@ -136,4 +157,58 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+@media (max-width: 600px) {
+  .hide-mobile {
+    display: none;
+  }
+
+  .info {
+      justify-content: center;
+  }
+
+  .home {
+      gap: 70px;
+      padding: 30px;
+      text-align: center;
+  }
+
+  .info-text {
+      text-align: center;
+      width: 100%;
+  }
+
+  h1 {
+      font-size: 2.5em;
+  }
+
+  h2 {
+      font-size: 2.0em;
+  }
+
+  h3 {
+      font-size: 1.5em;
+  }
+
+  a {
+      font-size: 1em;
+  }
+
+  .gradientdiv {
+      text-align: center;
+  }
+
+  .exec_image {
+      width: 60%;
+  }
+
+  .exec {
+      padding: 20px 0px;
+  }
+
+  .buttondiv {
+      gap: 20px;
+  }
+
 }
