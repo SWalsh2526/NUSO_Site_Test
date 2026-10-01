@@ -45,7 +45,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 100px;
-  min-width: 600px;
+  width: 100%;
   max-width: 1200px;
   margin: auto;
   padding: 50px;
@@ -53,7 +53,7 @@ body {
 
 .exec_image {
   width: 80%;
-  height: 80%;
+  height: auto;
 }
 
 .exec {
@@ -61,7 +61,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: top;
-  width: 500px;
+  max-width: 500px;
   gap: 1em;
   padding: 50px 0px;
 }
@@ -130,4 +130,10 @@ p {
 div.nav_div{
   display: flex;
   justify-content: space-between;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
