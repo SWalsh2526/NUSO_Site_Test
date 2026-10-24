@@ -32,7 +32,7 @@ function updateHero() {
   arch.style.transform = `translate3d(0,${-progress * stage.clientHeight * .3}px,0) scale(${scale})`;
   arch.style.opacity = 1 - smooth(clamp((progress - .78) / .22));
   copy.style.opacity = 1 - smooth(clamp((progress - .04) / .3));
-  copy.style.transform = `translate(-50%,calc(-12% - ${progress * 90}px))`;
+  copy.style.transform = `translate(-50%,calc(var(--copy-rest-y) - ${progress * 90}px))`;
   const copyHidden = progress > .34;
   copy.inert = copyHidden;
   copy.style.visibility = copyHidden ? 'hidden' : '';
