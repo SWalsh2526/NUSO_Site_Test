@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1100" viewBox="0 0 1000 1100" fill="none">
+  <defs>
+    <linearGradient id="stone" x1="170" y1="180" x2="860" y2="1010" gradientUnits="userSpaceOnUse"><stop stop-color="#c5b6df"/><stop offset=".38" stop-color="#ab92cc"/><stop offset="1" stop-color="#6e4b99"/></linearGradient>
+    <linearGradient id="edge" x1="500" y1="130" x2="500" y2="1060" gradientUnits="userSpaceOnUse"><stop stop-color="#e5d9f8"/><stop offset="1" stop-color="#8461ac"/></linearGradient>
+    <linearGradient id="side" x1="180" y1="0" x2="850" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#67458b"/><stop offset=".55" stop-color="#9874b9"/><stop offset="1" stop-color="#50306f"/></linearGradient>
+    <linearGradient id="iron" x1="500" y1="30" x2="500" y2="400" gradientUnits="userSpaceOnUse"><stop stop-color="#c4addd"/><stop offset="1" stop-color="#9273b0"/></linearGradient>
+    <radialGradient id="lamp"><stop stop-color="#f5e6cd"/><stop offset=".35" stop-color="#dec9ed"/><stop offset="1" stop-color="#ba9cd7" stop-opacity="0"/></radialGradient>
+    <pattern id="joints" width="160" height="66" patternUnits="userSpaceOnUse"><path d="M0 0h160M0 66h160M80 0v66" stroke="#301b48" stroke-opacity=".19" stroke-width="2"/><path d="M0 2h160" stroke="#efdefb" stroke-opacity=".1"/></pattern>
+    <clipPath id="arch-stone"><path d="M134 1060V695C134 422 282 218 500 161C718 218 866 422 866 695V1060H786V695C786 469 683 327 500 275C317 327 214 469 214 695V1060Z"/></clipPath>
+    <path id="left-arch-joints" d="M406 182L423 315M322 240L365 355M252 312L315 414M195 403L272 469M157 510L235 546M134 626L217 640M130 695H218"/>
+  </defs>
+  <!-- Pointed iron crest and curved bands follow the existing NUSO Arch mark. -->
+  <path d="M169 572C190 326 335 153 480 38Q500 18 520 38C665 153 810 326 831 572" stroke="url(#iron)" stroke-width="8"/>
+  <path d="M217 365 500 38 783 365M345 210Q500 259 655 210M407 140Q500 178 593 140M500 51v168" stroke="url(#iron)" stroke-width="4"/>
+  <circle cx="500" cy="73" r="22" fill="#ac8fc8"/><circle cx="500" cy="73" r="14" stroke="#d4bfe9" stroke-opacity=".6"/>
+  <!-- The offset outer edge gives the illustration a quiet architectural depth. -->
+  <path d="M134 1060V695C134 422 282 218 500 161C718 218 866 422 866 695V1060H786V695C786 469 683 327 500 275C317 327 214 469 214 695V1060Z" fill="#42285c" transform="translate(17 10)"/>
+  <path d="M134 1060V695C134 422 282 218 500 161C718 218 866 422 866 695V1060H786V695C786 469 683 327 500 275C317 327 214 469 214 695V1060Z" fill="url(#stone)"/>
+  <path d="M149 695C149 430 292 230 500 176C708 230 851 430 851 695M202 695C202 464 313 314 500 261C687 314 798 464 798 695" stroke="url(#edge)" stroke-width="4"/>
+  <path d="M162 695C162 439 300 244 500 190C700 244 838 439 838 695" stroke="#5a3a78" stroke-opacity=".4" stroke-width="3"/>
+  <path d="m488 167-12 115 24-8 24 8-12-115Z" fill="#d5c1e9" fill-opacity=".65"/>
+  <g stroke="#5e3d7d" stroke-width="2" opacity=".48" clip-path="url(#arch-stone)"><use href="#left-arch-joints"/><use href="#left-arch-joints" transform="translate(1000 0) scale(-1 1)"/></g>
+  <!-- Restrained iron scrolls under the curved arch; the opening stays clear. -->
+  <g transform="translate(0 -30)">
+  <g stroke="url(#iron)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M285 475Q330 338 500 293Q670 338 715 475M500 294v109"/>
+    <path d="M500 397C432 399 361 387 356 351C352 320 397 311 411 339C422 363 396 378 384 362M500 397C568 399 639 387 644 351C648 320 603 311 589 339C578 363 604 378 616 362"/>
+    <path d="M331 400Q393 374 450 397M669 400Q607 374 550 397M463 315Q487 344 476 376M537 315Q513 344 524 376" stroke-width="4"/>
+    <path d="m475 407 25-20 25 20M478 413h44l-7 39h-30Z" fill="#5f427d" stroke-width="4"/>
+  </g>
+  <circle cx="500" cy="434" r="58" fill="url(#lamp)" opacity=".42"/><path d="M488 417h24l-4 28h-16Z" fill="#ead8e8" fill-opacity=".58"/>
+  </g>
+  <!-- Stone piers and simple cap details. -->
+  <g>
+    <path d="M106 1060V744h136v316ZM758 1060V744h136v316Z" fill="url(#side)"/>
+    <path d="M112 1060V744h113v316ZM765 1060V744h113v316Z" fill="url(#stone)"/>
+    <path d="M112 1060V744h113v316ZM765 1060V744h113v316Z" fill="url(#joints)"/>
+    <path d="M98 728h150v24H98ZM752 728h150v24H752Z" fill="#b39acb"/>
+    <path d="M92 752h162l-14 16H106ZM746 752h162l-14 16H760Z" fill="#806098"/>
+    <path d="M111 916h115M765 916h115M111 982h115M765 982h115" stroke="#412951" stroke-opacity=".3" stroke-width="2"/>
+    <path d="M102 1039h139v30H102ZM758 1039h139v30H758Z" fill="#9878b6"/>
+    <path d="M91 1069h160v18H91ZM748 1069h160v18H748Z" fill="#684784"/>
+    <path d="M117 780v244M770 780v244" stroke="#dac3ed" stroke-opacity=".35" stroke-width="2"/>
+  </g>
+</svg>
