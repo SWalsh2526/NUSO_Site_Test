@@ -17,16 +17,16 @@ function finishCounts() {
   counts.forEach(element => { element.textContent = element.dataset.count; });
 }
 
-function countUp(element) {
+function countUp(element, delay = 0) {
   if (animatedCounts.has(element) || reducedMotion.matches) return;
   animatedCounts.add(element);
   const target = Number(element.dataset.count);
-  const start = performance.now();
+  const start = performance.now() + delay;
   // Keep the accessible value stable while the visible number counts up.
   element.setAttribute('aria-label', String(target));
   const tick = now => {
-    const progress = Math.min(1, (now - start) / 950);
-    element.textContent = String(Math.round(target * (1 - (1 - progress) ** 3)));
+    const progress = Math.max(0, Math.min(1, (now - start) / 2200));
+    element.textContent = String(Math.round(target * (1 - (1 - progress) ** 2)));
     if (progress < 1) countFrames.set(element, requestAnimationFrame(tick));
     else countFrames.delete(element);
   };
@@ -34,10 +34,19 @@ function countUp(element) {
 }
 
 function reveal(element, delay = 0) {
-  element.style.setProperty('--enter-delay', `${delay}ms`);
+  if (element.classList.contains('has-entered')) return;
+  const opening = element.getBoundingClientRect().top < innerHeight && scrollY < 40;
+  const entranceDelay = delay + (opening ? (element.matches('.resource-card,.tournament-panel') ? 220 : 80) : 30);
+  element.style.setProperty('--enter-delay', `${entranceDelay}ms`);
   element.classList.add('has-entered');
+  if (!reducedMotion.matches) {
+    element.animate([
+      { opacity:0, transform:'translateY(32px)' },
+      { opacity:1, transform:'translateY(0)' }
+    ], { duration:850, delay:entranceDelay, easing:'cubic-bezier(.25,.1,.25,1)', fill:'backwards' });
+  }
   observer?.unobserve(element);
-  element.querySelectorAll('[data-count]').forEach(countUp);
+  element.querySelectorAll('[data-count]').forEach(counter => countUp(counter, entranceDelay + 500));
 }
 
 function observeEntrances() {
@@ -68,7 +77,19 @@ function observeEntrances() {
     }
   }, { threshold: .12, rootMargin: '0px 0px -24px 0px' });
   root.classList.add('about-motion');
-  entrances.filter(element => !element.classList.contains('has-entered')).forEach(element => observer.observe(element));
+  // Start above-the-fold entrances directly; scrolling is not required.
+  entrances.filter(element => !element.classList.contains('has-entered')).forEach(element => {
+    const bounds = element.getBoundingClientRect();
+    if (bounds.top >= innerHeight || bounds.bottom <= 0) return;
+    const row = rows.get(element);
+    if (row) row.forEach((card,index) => reveal(card,index * 100));
+    else reveal(element);
+  });
+  const currentObserver = observer;
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    if (observer !== currentObserver || reducedMotion.matches) return;
+    entrances.filter(element => !element.classList.contains('has-entered')).forEach(element => currentObserver.observe(element));
+  }));
 }
 
 function resetTilt(surface) {
@@ -114,3 +135,10 @@ document.addEventListener('visibilitychange', () => {
 });
 updateHeader();
 observeEntrances();
+
+// A browser Back/Forward restore should feel like entering the page again.
+addEventListener('pageshow', event => {
+  if (!event.persisted) return;
+  entrances.forEach(element => element.classList.remove('has-entered'));
+  observeEntrances();
+});

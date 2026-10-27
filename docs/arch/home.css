@@ -901,8 +901,8 @@ h2 {
 
 .motion-enabled .reveal {
   opacity:0;
-  translate:0 20px;
-  transition:opacity .7s var(--ease),translate .7s var(--ease);
+  translate:0 32px;
+  transition:opacity .7s cubic-bezier(.25,.1,.25,1),translate .85s cubic-bezier(.25,.1,.25,1);
 }
 
 .motion-enabled .reveal.is-visible {
@@ -911,7 +911,7 @@ h2 {
 }
 
 .motion-enabled .photo-hover.reveal {
-  transition:opacity .7s var(--ease),translate .7s var(--ease),transform .4s var(--ease);
+  transition:opacity .7s cubic-bezier(.25,.1,.25,1),translate .85s cubic-bezier(.25,.1,.25,1),transform .4s var(--ease);
 }
 
 .tournament-card:nth-child(2) {

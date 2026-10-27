@@ -152,14 +152,30 @@ function configureEntrances() {
     elements.forEach(element => element.classList.add('has-entered'));
     return;
   }
+  function enter(element) {
+    if (element.classList.contains('has-entered')) return;
+    element.classList.add('has-entered');
+    element.animate([{ opacity:0, translate:'0 32px' },{ opacity:1, translate:'0 0' }], {
+      duration:850, delay:element === deck ? 280 : element === tablist ? 160 : 80,
+      easing:'cubic-bezier(.25,.1,.25,1)', fill:'backwards'
+    });
+    revealObserver?.unobserve(element);
+  }
   revealObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      entry.target.classList.add('has-entered');
-      revealObserver.unobserve(entry.target);
+      enter(entry.target);
     });
   }, { threshold: .12 });
-  elements.filter(element => !element.classList.contains('has-entered')).forEach(element => revealObserver.observe(element));
+  elements.forEach(element => {
+    const bounds = element.getBoundingClientRect();
+    if (bounds.top < innerHeight && bounds.bottom > 0) enter(element);
+  });
+  const currentObserver = revealObserver;
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    if (revealObserver !== currentObserver || reducedMotion.matches) return;
+    elements.filter(element => !element.classList.contains('has-entered')).forEach(element => currentObserver.observe(element));
+  }));
 }
 
 cards.forEach(card => { card.setAttribute('role', 'tabpanel'); card.setAttribute('aria-labelledby', `tab-${card.dataset.year}`); });
@@ -181,3 +197,9 @@ addEventListener('scroll', updateHeader, { passive: true });
 reducedMotion.addEventListener('change', configureEntrances);
 document.fonts?.ready.then(syncGeometry);
 document.addEventListener('visibilitychange', () => root.classList.toggle('is-hidden', document.hidden));
+
+addEventListener('pageshow', event => {
+  if (!event.persisted) return;
+  document.querySelectorAll('[data-enter]').forEach(element => element.classList.remove('has-entered'));
+  configureEntrances();
+});
