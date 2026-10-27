@@ -3,6 +3,20 @@ export function initWillie(reduceMotion) {
   const button = scene?.querySelector('[data-willie]');
   if (!button) return;
   const status = scene.querySelector('[data-willie-status]');
+  const section = scene.closest('.about-section');
+  function sizeTextShift() {
+    const layout = getComputedStyle(section);
+    const style = getComputedStyle(button);
+    const stacked = layout.gridTemplateColumns.trim().split(/\s+/).length === 1;
+    const angle = parseFloat(style.getPropertyValue('--willie-angle')) * Math.PI / 180;
+    const reach = parseFloat(style.height) * Math.sin(angle)
+      + parseFloat(style.getPropertyValue('--willie-out')) - parseFloat(style.right);
+    const shift = stacked ? 0 : Math.max(0, reach - parseFloat(layout.columnGap) + 20);
+    section.style.setProperty('--willie-text-shift', `${Math.ceil(shift)}px`);
+  }
+  sizeTextShift();
+  addEventListener('resize', sizeTextShift, { passive:true });
+  if ('ResizeObserver' in window) new ResizeObserver(sizeTextShift).observe(scene);
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
   let ready = false;
   let visible = false;

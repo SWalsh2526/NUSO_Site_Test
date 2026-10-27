@@ -1385,3 +1385,44 @@ h2 {
 @media (max-width: 359px) {
   .division { font-size: 23px; }
 }
+
+/* Let Willie borrow space from the copy while he is out. */
+.about-section .about-copy-window>.section-copy { translate:0 0; transition:translate .6s var(--ease); }
+.about-section:has(.willie-button.is-curious,.willie-button.is-greeting,.willie-button:focus-visible) .about-copy-window>.section-copy {
+  translate:var(--willie-text-shift,0px) 0;
+}
+.about-section:has(.willie-button.is-arriving) .about-copy-window>.section-copy {
+  animation:willie-makes-room 3.2s var(--ease) both;
+}
+@keyframes willie-makes-room {
+  0%,100% { translate:0 0; }
+  17%,77% { translate:var(--willie-text-shift,0px) 0; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .about-section .about-copy-window>.section-copy { translate:none !important; animation:none !important; transition:none; }
+}
+
+/* A stationary edge lets the copy move beneath the section's right gutter. */
+.about-copy-window {
+  min-width:0;
+  overflow:clip;
+  padding-right:24px;
+  -webkit-mask-image:linear-gradient(to right,#000 calc(100% - 24px),transparent);
+  mask-image:linear-gradient(to right,#000 calc(100% - 24px),transparent);
+}
+@media(min-width:651px) and (max-width:1100px) {
+  .about-section .willie-button {
+    width:142px;
+    height:209.7px;
+    bottom:clamp(-7px,calc(15vw - 112px),48px);
+  }
+}
+
+/* Fully hide the artwork at rest without clipping the photo's glow. */
+.willie-entry { opacity:0; transition:transform .42s var(--ease),opacity .18s ease; }
+.is-curious .willie-entry,.willie-button:focus-visible .willie-entry,.willie-button.is-greeting .willie-entry { opacity:1; }
+.is-arriving .willie-entry { animation:willie-peek 3.2s var(--ease) both,willie-visibility 3.2s ease both; }
+@keyframes willie-visibility {
+  0%,100% { opacity:0; }
+  10%,85% { opacity:1; }
+}

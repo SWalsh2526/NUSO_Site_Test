@@ -1,5 +1,5 @@
 import { daysUntil, countdownText } from './dates.mjs';
-import { initWillie } from './willie.mjs?v=3';
+import { initWillie } from './willie.mjs?v=4';
 
 const root = document.documentElement;
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
