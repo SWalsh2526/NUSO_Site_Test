@@ -1424,4 +1424,8 @@ body .desktop-nav,body .footer-bottom,body .resource-links { font-size:15px; }
 body .about-stat .stat-label,body .board-year { font-size:15px; }
 body .text-link { font-size:16px; }
 
-.text-emphasis { color:#c7b8d9; font-weight:500; }
+.text-emphasis { color:var(--lavender); font-weight:500; }
+
+/* Keep action labels consistent with adjacent text links. */
+body .button,body .hero-actions .button,body .card-info-link { font-size:16px; }
+body .button { min-height:46px; }

@@ -11,7 +11,7 @@
 .page-icon svg { width:26px; height:26px; }
 .resource-card h2,.tournament-information h2,.section-title h2 { font-size:clamp(25px,3vw,32px); font-weight:400; letter-spacing:-.025em; line-height:1.2; }
 .resource-card>p { margin:16px 0 32px; color:var(--muted); line-height:1.7; overflow-wrap:anywhere; }
-.resource-card .text-link { margin-top:auto; font-size:14px; }
+.resource-card .text-link { margin-top:auto; font-size:16px; }
 .resource-card .text-link span { transition:transform .25s ease; }
 .resource-card .text-link:hover span { transform:translate(2px,-2px); }
 .tournament-grid { display:grid; gap:20px; }
@@ -45,7 +45,7 @@
 .involvement-option+.involvement-option { border-top:1px solid var(--line); }
 .involvement-option h2 { margin:0; color:var(--lavender); font-size:21px; font-weight:400; line-height:1.4; }
 .involvement-option p { margin:12px 0 8px; color:var(--text); font-size:16px; line-height:1.7; }
-.involvement-option .text-link { padding:6px 0; font-size:19px; font-weight:400; text-underline-offset:6px; }
+.involvement-option .text-link { padding:6px 0; font-size:16px; font-weight:400; text-underline-offset:6px; }
 .involvement-option .text-link:hover { text-decoration:underline; }
 @media(max-width:800px) {
   .involvement-layout { grid-template-columns:1fr; gap:42px; padding-bottom:56px; }
@@ -75,7 +75,7 @@
 .contact-email { display:inline-block; font-size:clamp(18px,2.1vw,25px); line-height:1.6; overflow-wrap:anywhere; text-underline-offset:6px; }
 .contact-email:hover { text-decoration:underline; }
 .contact-detail p { color:var(--text); font-size:16px; line-height:1.7; }
-.contact-detail .text-link { margin-top:10px; font-size:19px; }
+.contact-detail .text-link { margin-top:10px; font-size:16px; }
 @media(max-width:800px) {
   .contact-split { grid-template-columns:1fr; gap:42px; }
 }
