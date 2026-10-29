@@ -1,195 +1,401 @@
 /* Shared site styling is loaded from home.css. */
+
 .archive-content { padding:112px 0 48px; }
+
 .archive-intro { padding-bottom:28px; }
+
 .archive-intro h1 { font-size:clamp(40px,5.4vw,64px); font-weight:400; line-height:1.1; letter-spacing:-.045em; }
+
 .archive-intro>p { margin-top:16px; color:var(--muted); font-size:15px; line-height:1.7; }
-.archive-browser { overflow:clip; overflow-clip-margin:12px; }
+
+.archive-browser { overflow:visible; }
+
 .archive-year-list {
+
   position:relative;
+
   display:flex;
+
   width:max-content;
+
   max-width:100%;
+
   margin:0 auto 28px;
+
   padding:6px;
+
   border:1px solid var(--line);
+
   border-radius:99px;
+
   background:#1b102b88;
+
   isolation:isolate;
+
 }
+
 .archive-year-list[hidden],.archive-controls[hidden] { display:none; }
+
 .archive-year-button {
+
   position:relative;
+
   flex:1;
+
   min-width:74px;
+
   padding:12px 20px;
+
   border:0;
+
   border-radius:99px;
+
   color:var(--muted);
+
   background:transparent;
+
   font:500 14px/1.2 Outfit,system-ui,sans-serif;
+
   cursor:pointer;
+
   transition:color .25s;
+
 }
+
 .archive-year-button[aria-selected="true"] { color:#27143e; }
+
 .archive-year-button:focus-visible,.archive-step:focus-visible { outline:3px solid var(--lavender); outline-offset:4px; }
+
 .archive-year-indicator {
+
   position:absolute;
+
   top:6px;
+
   bottom:6px;
+
   left:0;
+
   width:var(--year-width,74px);
+
   transform:translateX(var(--year-x,6px));
+
   z-index:-1;
+
   border-radius:99px;
+
   background:#e4d5f6;
+
   transition:transform .55s cubic-bezier(.16,1,.3,1),width .55s cubic-bezier(.16,1,.3,1);
+
 }
+
 .archive-deck { position:relative; max-width:1000px; margin:0 auto; }
+
 .archive-card {
+
   display:grid;
+
   grid-template-columns:.82fr 1.18fr;
+
   overflow:hidden;
+
   margin-bottom:24px;
+
   border:1px solid #d9c4f340;
+
   border-radius:30px;
+
   background:#2d1944;
+
   box-shadow:0 16px 40px #11071c26;
+
   scroll-margin-top:130px;
+
 }
+
 .archive-cover {
+
   position:relative;
+
   display:flex;
+
   flex-direction:column;
+
   justify-content:space-between;
+
   min-width:0;
+
   min-height:420px;
+
   overflow:hidden;
+
   padding:32px;
+
   isolation:isolate;
+
   background:radial-gradient(ellipse at 50% 35%,#7951a5 0,#57317b 45%,#39204f 100%);
+
 }
+
 .archive-cover::after { position:absolute; inset:0; z-index:-1; content:""; background:linear-gradient(transparent 15%,#1f0e394d); }
+
 .archive-arch { position:absolute; z-index:-2; top:6%; left:7%; width:100%; height:auto; max-width:none; opacity:.3; }
+
 .archive-edition { font-size:11px; letter-spacing:.13em; text-transform:uppercase; color:#f2e7ff; }
+
 .archive-cover-year { position:relative; font-size:clamp(76px,9.5vw,132px); font-weight:300; line-height:1; letter-spacing:-.075em; }
+
 .archive-location { font-size:12px; color:#e1d1ed; }
+
 .archive-details { display:flex; flex-direction:column; min-width:0; padding:32px; background:linear-gradient(135deg,#3b2553,#28183c); }
+
 .archive-card-top { padding-bottom:25px; border-bottom:1px solid var(--line); }
+
 .archive-card-top h2 { margin:0 0 8px; font-size:19px; font-weight:400; letter-spacing:-.015em; line-height:1.3; }
+
 .archive-card-top time { color:var(--muted); font-size:13px; }
+
 .archive-champion { padding:25px 0 22px; }
+
 .archive-champion .eyebrow { margin-bottom:12px; font-size:10px; }
+
 .archive-champion h3 { max-width:440px; margin:0; color:var(--text); font-size:clamp(25px,2.7vw,34px); font-weight:400; line-height:1.13; letter-spacing:-.035em; }
+
 .archive-city { margin-top:10px; color:var(--muted); font-size:13px; line-height:1.5; }
+
 .archive-facts { display:flex; gap:28px; margin:0 0 26px; }
+
 .archive-facts>div { display:flex; align-items:baseline; gap:7px; }
+
 .archive-facts dt { color:var(--muted); font-size:12px; order:1; }
+
 .archive-facts dd { margin:0; font-size:19px; color:var(--lavender); font-variant-numeric:tabular-nums; }
+
 .archive-downloads { display:flex; gap:10px; flex-wrap:wrap; margin-top:auto; }
+
 .archive-downloads .button { min-height:44px; padding:12px 18px; gap:16px; font-size:12px; }
 
+
+
 /* Without JavaScript, all five cards remain in the normal document flow. */
+
 .archive-enhanced .archive-deck { transition:height .6s cubic-bezier(.16,1,.3,1); touch-action:pan-y pinch-zoom; }
+
 .archive-enhanced .archive-card {
+
   position:absolute;
+
   top:0;
+
   left:36px;
+
   width:calc(100% - 72px);
+
   margin:0;
+
   opacity:var(--card-opacity,0);
+
   filter:brightness(var(--card-brightness,1));
+
   transform:translate3d(var(--card-x,0px),var(--card-y,0px),0) rotate(var(--card-angle,0deg)) scale(var(--card-scale,1));
+
   transform-origin:50% 85%;
-  transition:transform .8s cubic-bezier(.16,1,.3,1),opacity .3s ease,filter .65s ease;
+
+  transition:none;
+
   pointer-events:none;
+
 }
+
 .archive-enhanced .archive-card.is-active { pointer-events:auto; }
+
 .archive-card[role="tabpanel"]:focus-visible { outline:3px solid var(--lavender); outline-offset:5px; }
+
 .archive-controls { display:flex; align-items:center; justify-content:space-between; gap:18px; max-width:928px; margin:38px auto 0; }
+
 .archive-step {
+
   display:inline-flex; align-items:center; justify-content:center; gap:12px;
+
   min-height:44px; padding:10px 18px; border:1px solid var(--line); border-radius:99px;
+
   background:#2d194455; color:var(--text); font:400 13px/1.4 Outfit,system-ui,sans-serif;
+
   cursor:pointer; transition:background .25s,opacity .25s;
+
 }
+
 .archive-step:hover:enabled { background:#68418b55; }
+
 .archive-step:disabled { opacity:.3; cursor:default; }
+
 .archive-position { color:var(--muted); font-size:12px; text-align:center; }
+
 .site-header a[aria-current="page"] { color:#fff; }
+
 .archive-motion [data-enter] { opacity:0; translate:0 32px; transition:opacity .7s cubic-bezier(.25,.1,.25,1) 80ms,translate .85s cubic-bezier(.25,.1,.25,1) 80ms; }
+
 .archive-motion [data-enter].has-entered { opacity:1; translate:0 0; }
+
 @media(min-width:651px) and (max-height:800px) {
+
   .archive-intro { padding-bottom:20px; }
+
   .archive-intro h1 { font-size:48px; }
+
   .archive-intro>p { margin-top:10px; font-size:14px; }
+
   .archive-year-list { margin-bottom:24px; }
+
   .archive-cover { min-height:380px; }
+
   .archive-cover,.archive-details { padding:26px; }
+
   .archive-card-top { padding-bottom:20px; }
+
   .archive-champion { padding:20px 0; }
+
   .archive-facts { margin-bottom:22px; }
+
 }
+
 @media(max-width:1050px) {
+
   .archive-cover,.archive-details { padding:26px; }
+
   .archive-cover { min-height:420px; }
+
   .archive-downloads .button { padding:12px 14px; gap:10px; }
+
 }
+
 @media(max-width:800px) {
+
   .archive-content { padding:96px 0 40px; }
+
   .archive-enhanced .archive-card { left:24px; width:calc(100% - 48px); }
+
   .archive-card { grid-template-columns:.7fr 1.3fr; }
+
   .archive-cover,.archive-details { padding:24px; }
+
   .archive-cover-year { font-size:78px; }
+
 }
+
 @media(max-width:650px) {
+
   .archive-content { padding:94px 0 36px; }
+
   .archive-intro { padding-bottom:24px; }
+
   .archive-intro h1 { font-size:clamp(34px,7.5vw,44px); }
+
   .archive-intro>p { margin-top:12px; font-size:14px; }
+
   .archive-year-list { width:100%; margin-bottom:24px; padding:5px; }
+
   .archive-year-button { min-width:0; padding:12px 8px; font-size:13px; }
+
   .archive-year-indicator { top:5px; bottom:5px; }
+
   .archive-card { grid-template-columns:1fr; border-radius:25px; }
+
   .archive-enhanced .archive-card { left:14px; width:calc(100% - 28px); }
+
   .archive-cover { min-height:150px; height:150px; padding:20px 24px; }
+
   .archive-arch { width:190px; left:auto; right:15px; top:-20px; opacity:.35; }
+
   .archive-cover-year { position:absolute; left:24px; bottom:16px; font-size:78px; }
+
   .archive-edition { font-size:9px; }
+
   .archive-location { position:absolute; top:20px; right:24px; max-width:130px; text-align:right; font-size:11px; }
+
   .archive-details { padding:24px; }
+
   .archive-card-top { padding-bottom:18px; }
+
   .archive-card-top h2 { font-size:18px; }
+
   .archive-champion { padding:20px 0; }
+
   .archive-champion h3 { font-size:27px; }
+
   .archive-facts { margin-bottom:22px; }
+
   .archive-downloads { display:grid; grid-template-columns:1fr; }
+
   .archive-downloads .button { justify-content:space-between; padding:13px 17px; }
+
   .archive-controls { margin-top:30px; gap:8px; }
+
   .archive-step { padding:9px 13px; gap:8px; font-size:12px; }
+
   .archive-position { font-size:11px; }
+
 }
+
 @media(prefers-reduced-motion:reduce) {
+
   .archive-motion [data-enter] { opacity:1; translate:none; }
+
 }
+
+
 
 /* Keep the artwork and numerals on one shared center line. */
+
 .archive-arch { top:50%; left:50%; width:94%; transform:translate(-50%,-50%); }
+
 .archive-cover-year { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); white-space:nowrap; text-align:center; }
+
 .archive-location { margin-top:auto; }
+
 @media(max-width:650px) {
+
   .archive-arch { top:55%; left:50%; right:auto; width:190px; }
+
   .archive-cover-year { top:59%; left:50%; bottom:auto; font-size:78px; }
+
 }
-/* Single-card transitions share a clean, clipped viewport. */
-:is(.transition-lab,.archive-single) .archive-deck { overflow:hidden; border-radius:30px; }
-:is(.transition-lab,.archive-single).archive-enhanced .archive-card { left:0; width:100%; transform:none; filter:none; opacity:0; transition:none; visibility:hidden; }
-:is(.transition-lab,.archive-single).archive-enhanced .archive-card.is-active { opacity:1; visibility:visible; }
-:is(.transition-lab,.archive-single) .archive-controls { max-width:1000px; }
-.motion-options { display:flex; gap:8px; flex-wrap:wrap; margin:20px 0 12px; }
-.motion-options button { border:1px solid var(--line); border-radius:99px; background:#2d1944; color:var(--text); padding:10px 18px; font:inherit; cursor:pointer; }
-.motion-options button[aria-pressed="true"] { background:var(--lavender); color:var(--ink); }
-.motion-options button:focus-visible { outline:3px solid white; outline-offset:3px; }
-.motion-description { min-height:24px; color:var(--muted); font-size:14px; }
-.transition-lab .archive-intro { padding-bottom:20px; }
+
+
+
+
 
 .archive-motion .archive-deck[data-enter] { transition-delay:220ms; }
+
+
+/* Card positions settle together; switching is orchestrated in JavaScript. */
+.archive-browser { padding-bottom:48px; }
+.archive-downloads .button { font-size:14px; }
+
+.archive-card-top time,.archive-city,.archive-location,.archive-facts dt,
+.archive-position { color:#fff; font-size:15px; }
+.archive-downloads .button { font-size:16px; min-height:46px; }
+.archive-champion .eyebrow { color:#fff; font-size:12px; }
+.archive-facts dd { color:#fff; font-size:22px; }
+.archive-controls { display:flex; align-items:center; justify-content:center; gap:0; width:max-content; max-width:100%; margin:0 auto 28px; padding:6px; border:1px solid var(--line); border-radius:99px; background:#1b102b88; }
+.archive-controls .archive-year-list { margin:0; min-width:0; padding:0 8px; border:0; border-radius:0; background:transparent; }
+.archive-controls .archive-year-indicator { top:0; bottom:0; }
+.archive-controls .archive-step { position:relative; flex:0 0 44px; width:44px; height:40px; min-height:40px; padding:0; border:0; border-radius:0; background:transparent; font-size:21px; }
+.archive-controls .archive-step:hover:enabled { background:transparent; color:var(--lavender); }
+.archive-controls .archive-step::after { position:absolute; top:6px; bottom:6px; width:1px; content:""; background:var(--line); }
+.archive-controls .archive-step:first-child::after { right:0; }
+.archive-controls .archive-step:last-child::after { left:0; }
+@media(max-width:650px) {
+  .archive-controls { width:100%; margin:0 auto 24px; padding:5px; }
+  .archive-controls .archive-step { flex-basis:36px; width:36px; }
+  .archive-controls .archive-year-list { flex:1; width:auto; padding:0 5px; }
+  .archive-controls .archive-year-button { min-width:0; padding:12px 3px; font-size:12px; }
+  .archive-location { top:auto; bottom:10px; left:0; right:0; max-width:none; text-align:center; font-size:14px; }
+  .archive-cover-year { top:51%; }
+}
+
+.archive-campus-photo { position:absolute; inset:0; z-index:-2; width:100%; height:100%; object-fit:cover; }
+.archive-cover:after { background:rgba(28,12,46,.42); inset:0; }
+.archive-cover-year { color:#fff; text-shadow:0 2px 4px #0008; }
+.archive-location { color:#fff; }

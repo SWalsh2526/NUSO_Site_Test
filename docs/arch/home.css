@@ -1,7 +1,7 @@
 :root {
   color-scheme:dark;
   --purple:#4e2a84;
-  --ink:#211135;
+  --ink:#241438;
   --text:#fbf8ff;
   --muted:#c7b8d9;
   --line:rgba(221,202,244,.17);
@@ -554,10 +554,6 @@ h2 {
   transform:translate(2px,-2px);
 }
 
-[data-tilt] {
-  transform:perspective(1000px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));
-  transition:transform .4s var(--ease);
-}
 
 .photo-hover {
   position:relative;
@@ -697,24 +693,6 @@ h2 {
   border-radius:22px;
 }
 
-.photo-hover:before {
-  content:"";
-  position:absolute;
-  inset:-20px;
-  z-index:-1;
-  pointer-events:none;
-  border-radius:inherit;
-  background:radial-gradient(ellipse at var(--glow-x,50%) var(--glow-y,50%),rgba(169,112,225,.42),rgba(130,78,187,.16) 50%,transparent 75%);
-  filter:blur(18px);
-  opacity:0;
-  transition:opacity .4s var(--ease);
-}
-
-@media (hover:hover) and (pointer:fine) {
-  .photo-hover:hover:before {
-    opacity:1;
-  }
-}
 
 .resource-links {
   display:flex;
@@ -1193,10 +1171,6 @@ h2 {
     right:12px;
     bottom:18px;
   }
-  .photo-hover:before {
-    inset:-10px;
-    filter:blur(16px);
-  }
   .photo-frame>img {
     aspect-ratio:1.16;
     object-position:50% 35%;
@@ -1328,12 +1302,6 @@ h2 {
   .arch-transform,.hero-copy,.hero-ground {
     will-change:auto;
   }
-  [data-tilt] {
-    transform:none!important;
-  }
-  .photo-hover:before {
-    display:none;
-  }
   .willie-button .willie-character {
     transform:none;
   }
@@ -1426,3 +1394,34 @@ h2 {
   0%,100% { opacity:0; }
   10%,85% { opacity:1; }
 }
+
+/* Regular Outfit body text, retained from the typography revision. */
+body { font-family:Outfit,Arial,sans-serif; font-weight:400; }
+.section-copy>p:not(.eyebrow),.about-intro-section>p { font-size:17px; line-height:1.8; font-weight:400; }
+.section-copy h2,.about-heading-copy,.board-heading,.page-intro h1,.archive-intro h1 { font-weight:400; letter-spacing:-.025em; }
+@media(max-width:650px) {
+  .section-copy>p:not(.eyebrow),.about-intro-section>p { font-size:16px; }
+}
+
+/* Deep plum background from the flatter palette. */
+.atmosphere { background:#241438; }
+.ambient-light,.hero-glow { display:none; }
+
+/* Readable white text retained independently of layout experiments. */
+:root { --text:#fff; --muted:#fff; }
+body { font-size:17px; }
+body .section-copy>p:not(.eyebrow),
+body .about-intro-section>p,
+body .page-intro>p:last-child,
+body .resource-card>p,
+body .tournament-information>p,
+body .involvement-option p,
+body .contact-detail p { color:#fff; font-size:17px; line-height:1.8; }
+body .about-stat .stat-label,body .board-year,body .about-stats-note,
+body .edition,body .count-label,body .resource-links,body .resource-links span,
+body .footer-bottom,body .footer-email,body .desktop-nav { color:#fff; }
+body .desktop-nav,body .footer-bottom,body .resource-links { font-size:15px; }
+body .about-stat .stat-label,body .board-year { font-size:15px; }
+body .text-link { font-size:16px; }
+
+.text-emphasis { color:#c7b8d9; font-weight:500; }

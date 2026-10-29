@@ -1,18 +1,18 @@
 <!doctype html>
-<html lang="en" class="archive-single">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#211135">
+  <meta name="theme-color" content="#241438">
   <meta name="description" content="Explore past Northwestern Science Olympiad invitationals. Find tournament results, tests, and answer keys from 2022 to 2026.">
   <title>Past Tournaments | Northwestern University Science Olympiad</title>
   <link rel="icon" href="../logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="home.css?v=13">
-  <link rel="stylesheet" href="results.css?v=13">
-  <script type="module" src="results.mjs?v=14"></script>
+  <link rel="stylesheet" href="home.css?v=26">
+  <link rel="stylesheet" href="results.css?v=27">
+  <script type="module" src="results.mjs?v=25"></script>
 </head>
 <body>
   <a class="skip-link" href="#top">Skip to past tournaments</a>
@@ -29,13 +29,14 @@
     </details>
   </header>
   <main class="archive-content" id="top">
-    <section class="section archive-section" aria-labelledby="archive-heading">
-      <div class="archive-intro" data-enter>
+    <section class="section archive-section" data-enter aria-labelledby="archive-heading">
+      <div class="archive-intro">
         <h1 id="archive-heading">Past Tournaments.</h1>
-        <p>Scoresheets, tests, and answer keys.</p>
       </div>
       <div class="archive-browser" aria-label="Tournament archive">
-        <div class="archive-year-list" data-enter role="tablist" aria-label="Tournament year" hidden>
+        <div class="archive-controls" hidden>
+          <button class="archive-step" type="button" data-step="-1" aria-label="View newer tournament"><span aria-hidden="true">←</span></button>
+          <div class="archive-year-list" role="tablist" aria-label="Tournament year" hidden>
           <span class="archive-year-indicator" aria-hidden="true"></span>
           <button class="archive-year-button" id="tab-2026" type="button" role="tab" aria-controls="year-2026" aria-selected="false" tabindex="-1" data-year="2026">2026</button>
           <button class="archive-year-button" id="tab-2025" type="button" role="tab" aria-controls="year-2025" aria-selected="false" tabindex="-1" data-year="2025">2025</button>
@@ -43,11 +44,14 @@
           <button class="archive-year-button" id="tab-2023" type="button" role="tab" aria-controls="year-2023" aria-selected="false" tabindex="-1" data-year="2023">2023</button>
           <button class="archive-year-button" id="tab-2022" type="button" role="tab" aria-controls="year-2022" aria-selected="false" tabindex="-1" data-year="2022">2022</button>
         </div>
-        <div class="archive-deck" data-enter>
+          <button class="archive-step" type="button" data-step="1" aria-label="View older tournament"><span aria-hidden="true">→</span></button>
+        </div>
+        <p class="archive-position visually-hidden" role="status" aria-live="polite" aria-atomic="true"></p>
+        <div class="archive-deck">
         <article class="archive-card" id="year-2026" aria-labelledby="title-2026" data-year="2026">
           <div class="archive-cover">
-            <img class="archive-arch" src="arch.svg" alt="" width="1000" height="1100" aria-hidden="true">
-            <span class="archive-edition">5th annual</span>
+            <img class="archive-campus-photo" src="assets/campus/campus.jpg" alt="" aria-hidden="true" width="800" height="800">
+
             <span class="archive-cover-year" aria-hidden="true">2026</span>
             <span class="archive-location">Evanston, Illinois</span>
           </div>
@@ -73,8 +77,8 @@
         </article>
         <article class="archive-card" id="year-2025" aria-labelledby="title-2025" data-year="2025">
           <div class="archive-cover">
-            <img class="archive-arch" src="arch.svg" alt="" width="1000" height="1100" aria-hidden="true">
-            <span class="archive-edition">4th annual</span>
+            <img class="archive-campus-photo" src="assets/campus/deering.jpg" alt="" aria-hidden="true" width="800" height="800">
+
             <span class="archive-cover-year" aria-hidden="true">2025</span>
             <span class="archive-location">Evanston, Illinois</span>
           </div>
@@ -100,8 +104,8 @@
         </article>
         <article class="archive-card" id="year-2024" aria-labelledby="title-2024" data-year="2024">
           <div class="archive-cover">
-            <img class="archive-arch" src="arch.svg" alt="" width="1000" height="1100" aria-hidden="true">
-            <span class="archive-edition">3rd annual</span>
+            <img class="archive-campus-photo" src="assets/campus/tech.jpg" alt="" aria-hidden="true" width="800" height="800">
+
             <span class="archive-cover-year" aria-hidden="true">2024</span>
             <span class="archive-location">Evanston, Illinois</span>
           </div>
@@ -127,8 +131,8 @@
         </article>
         <article class="archive-card" id="year-2023" aria-labelledby="title-2023" data-year="2023">
           <div class="archive-cover">
-            <img class="archive-arch" src="arch.svg" alt="" width="1000" height="1100" aria-hidden="true">
-            <span class="archive-edition">2nd annual</span>
+            <img class="archive-campus-photo" src="assets/campus/university-hall.jpg" alt="" aria-hidden="true" width="800" height="800">
+
             <span class="archive-cover-year" aria-hidden="true">2023</span>
             <span class="archive-location">Evanston, Illinois</span>
           </div>
@@ -154,8 +158,8 @@
         </article>
         <article class="archive-card" id="year-2022" aria-labelledby="title-2022" data-year="2022">
           <div class="archive-cover">
-            <img class="archive-arch" src="arch.svg" alt="" width="1000" height="1100" aria-hidden="true">
-            <span class="archive-edition">1st annual</span>
+            <img class="archive-campus-photo" src="assets/campus/meadow.jpg" alt="" aria-hidden="true" width="800" height="800">
+
             <span class="archive-cover-year" aria-hidden="true">2022</span>
             <span class="archive-location">Virtual tournament</span>
           </div>
@@ -180,11 +184,7 @@
           </div>
         </article>
         </div>
-        <div class="archive-controls" hidden>
-          <button class="archive-step" type="button" data-step="-1" aria-label="View newer tournament"><span aria-hidden="true">←</span> Newer</button>
-          <p class="archive-position" role="status" aria-live="polite" aria-atomic="true"></p>
-          <button class="archive-step" type="button" data-step="1" aria-label="View older tournament">Older <span aria-hidden="true">→</span></button>
-        </div>
+
       </div>
     </section>
   </main>

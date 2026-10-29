@@ -8,58 +8,36 @@ const status = document.querySelector('.archive-position');
 const steps = [...document.querySelectorAll('[data-step]')];
 const menu = document.querySelector('.mobile-menu');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-const motionButtons = [...document.querySelectorAll('[data-motion]')];
-const lab = root.classList.contains('transition-lab');
-const descriptions = { fade:'Fade out, then fade in. No overlapping text.', slide:'A horizontal slide with a soft stop.', lift:'A small upward movement with a fade.', combined:'A short sideways slide with a soft fade.' };
-let motion = lab ? new URLSearchParams(location.search).get('motion') || 'fade' : 'combined';
-if (!(motion in descriptions)) motion = 'fade';
 let runningAnimations = [];
 let selected = 0;
-function setMotion(value) {
-  motion = value;
-  runningAnimations.forEach(animation => animation.cancel());
-  runningAnimations = [];
-  motionButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.motion === motion)));
-  const description = document.querySelector('.motion-description');
-  if (description) description.textContent = descriptions[motion];
-  const url = new URL(location.href);
-  url.searchParams.set('motion', motion);
-  history.replaceState(null, '', url);
-}
-motionButtons.forEach(button => button.addEventListener('click', () => setMotion(button.dataset.motion)));
-if (lab) setMotion(motion);
-function animateChange(previous, next, direction) {
-  runningAnimations.forEach(animation => animation.cancel());
-  runningAnimations = [];
-  if (previous === next || reducedMotion.matches) return;
-  const outgoing = cards[previous], incoming = cards[next];
+function animateStack(snapshots, previous) {
+  if (previous === selected || reducedMotion.matches) return;
+  const direction = selected > previous ? 1 : -1;
   const ease = 'cubic-bezier(.22,1,.36,1)';
-  if (motion === 'combined') {
-    const travel = innerWidth <= 650 ? 32 : 64;
-    runningAnimations = [
-      outgoing.animate([
-        { visibility:'visible', opacity:1, transform:'translate(0,0)' },
-        { visibility:'visible', opacity:0, transform:`translate(${-direction * travel}px,0)` }
-      ], { duration:240, easing:'cubic-bezier(.4,0,1,1)' }),
-      incoming.animate([
-        { opacity:0, transform:`translate(${direction * travel}px,0)` },
-        { opacity:1, transform:'translate(0,0)' }
-      ], { duration:560, delay:180, fill:'backwards', easing:ease })
-    ];
-    return;
-  }
-  const from = motion === 'slide' ? `translateX(${direction * 100}%)` : motion === 'lift' ? 'translateY(18px)' : 'none';
-  const to = motion === 'slide' ? `translateX(${-direction * 100}%)` : motion === 'lift' ? 'translateY(-12px)' : 'none';
-  const duration = motion === 'slide' ? 550 : motion === 'lift' ? 300 : 180;
-  const outgoingAnimation = outgoing.animate([
-    { visibility:'visible', opacity:1, transform:'none' },
-    { visibility:'visible', opacity:motion === 'slide' ? 1 : 0, transform:to }
-  ], { duration, easing:ease });
-  const incomingAnimation = incoming.animate([
-    { opacity:motion === 'slide' ? 1 : 0, transform:from },
-    { opacity:1, transform:'none' }
-  ], { duration:motion === 'slide' ? 550 : 400, delay:motion === 'slide' ? 0 : duration, fill:'backwards', easing:ease });
-  runningAnimations = [outgoingAnimation, incomingAnimation];
+  cards.forEach((card, index) => {
+    const end = getComputedStyle(card);
+    const target = { transform:end.transform, opacity:end.opacity, filter:end.filter };
+    const from = snapshots[index];
+    let frames, options;
+    if (index === previous) {
+      // Clear the front before moving the old card into its new stack position.
+      const behind = card.style.zIndex;
+      frames = [
+        { ...from, zIndex:'40', offset:0 },
+        { transform:`${from.transform === 'none' ? '' : from.transform} translateX(${-direction * 90}px) rotate(${-direction * 7}deg)`, opacity:0, filter:from.filter, zIndex:'40', offset:.28 },
+        { ...target, opacity:0, zIndex:behind, offset:.29 },
+        { ...target, zIndex:behind, offset:1 }
+      ];
+      options = { duration:820, easing:'ease-in-out' };
+    } else if (index === selected) {
+      frames = [{ ...from, opacity:0, zIndex:'30' }, { ...target, zIndex:'30' }];
+      options = { duration:620, delay:230, fill:'backwards', easing:ease };
+    } else {
+      frames = [from, target];
+      options = { duration:720, delay:140, fill:'backwards', easing:ease };
+    }
+    runningAnimations.push(card.animate(frames, options));
+  });
 }
 let pointerStart;
 let revealObserver;
@@ -72,6 +50,12 @@ function syncGeometry() {
 
 function selectYear(index, { updateURL = true, focus = false } = {}) {
   const previous = selected;
+  const snapshots = cards.map(card => {
+    const style = getComputedStyle(card);
+    return { transform:style.transform, opacity:style.opacity, filter:style.filter };
+  });
+  runningAnimations.forEach(animation => animation.cancel());
+  runningAnimations = [];
   selected = Math.max(0, Math.min(cards.length - 1, index));
   const narrow = innerWidth <= 650;
   cards.forEach((card, position) => {
@@ -85,7 +69,7 @@ function selectYear(index, { updateURL = true, focus = false } = {}) {
     card.style.zIndex = String(10 - distance);
     card.style.setProperty('--card-x', `${offset * (narrow ? 11 : 28)}px`);
     card.style.setProperty('--card-y', `${distance * (narrow ? 8 : 10)}px`);
-    card.style.setProperty('--card-angle', `${offset * (narrow ? 1.8 : 2.7)}deg`);
+    card.style.setProperty('--card-angle', `${offset * (narrow ? .7 : 1.1)}deg`);
     card.style.setProperty('--card-scale', String(Math.max(.78, 1 - distance * .055)));
     card.style.setProperty('--card-opacity', distance > 2 ? '0' : '1');
     card.style.setProperty('--card-brightness', active ? '1' : distance === 1 ? '.85' : '.7');
@@ -97,7 +81,7 @@ function selectYear(index, { updateURL = true, focus = false } = {}) {
   });
   status.textContent = `${cards[selected].dataset.year} · ${selected + 1} of ${cards.length}`;
   syncGeometry();
-  animateChange(previous, selected, selected > previous ? 1 : -1);
+  animateStack(snapshots, previous);
   if (focus) tabs[selected].focus({ preventScroll: true });
   if (updateURL) history.replaceState(null, '', `#${cards[selected].id}`);
 }
@@ -156,7 +140,7 @@ function configureEntrances() {
     if (element.classList.contains('has-entered')) return;
     element.classList.add('has-entered');
     element.animate([{ opacity:0, translate:'0 32px' },{ opacity:1, translate:'0 0' }], {
-      duration:850, delay:element === deck ? 280 : element === tablist ? 160 : 80,
+      duration:850, delay:80,
       easing:'cubic-bezier(.25,.1,.25,1)', fill:'backwards'
     });
     revealObserver?.unobserve(element);
@@ -194,7 +178,11 @@ if ('ResizeObserver' in window) {
 addEventListener('resize', () => selectYear(selected, { updateURL: false }), { passive: true });
 addEventListener('hashchange', selectFromHash);
 addEventListener('scroll', updateHeader, { passive: true });
-reducedMotion.addEventListener('change', configureEntrances);
+reducedMotion.addEventListener('change', () => {
+  runningAnimations.forEach(animation => animation.cancel());
+  runningAnimations = [];
+  configureEntrances();
+});
 document.fonts?.ready.then(syncGeometry);
 document.addEventListener('visibilitychange', () => root.classList.toggle('is-hidden', document.hidden));
 

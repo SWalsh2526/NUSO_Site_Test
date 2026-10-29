@@ -3,7 +3,6 @@ import { initWillie } from './willie.mjs?v=4';
 
 const root = document.documentElement;
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
-const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
 const story = document.querySelector('.hero-story');
 const stage = document.querySelector('.hero-stage');
 const arch = document.querySelector('.arch-transform');
@@ -67,7 +66,6 @@ function configureMotion() {
     activeCounts.clear();
     root.style.removeProperty('--ambient-x');
     root.style.removeProperty('--ambient-y');
-    document.querySelectorAll('[data-tilt]').forEach(resetTilt);
   }
   scheduleHero();
 }
@@ -99,35 +97,12 @@ function updateCount(card, animate = false) {
   activeCounts.set(card, animation);
 }
 
-function resetTilt(surface) {
-  ['--tilt-x', '--tilt-y', '--glow-x', '--glow-y'].forEach(property => surface.style.removeProperty(property));
-}
-
-for (const surface of document.querySelectorAll('[data-tilt]')) {
-  surface.addEventListener('pointermove', event => {
-    if (!finePointer.matches || reduceMotion.matches || event.pointerType === 'touch') return;
-    const rect = surface.getBoundingClientRect();
-    const x = clamp((event.clientX - rect.left) / rect.width);
-    const y = clamp((event.clientY - rect.top) / rect.height);
-    surface.style.setProperty('--tilt-x', `${(y - .5) * -4}deg`);
-    surface.style.setProperty('--tilt-y', `${(x - .5) * 4}deg`);
-    surface.style.setProperty('--glow-x', `${x * 100}%`);
-    surface.style.setProperty('--glow-y', `${y * 100}%`);
-  });
-  surface.addEventListener('pointerleave', () => resetTilt(surface));
-  surface.addEventListener('pointercancel', () => resetTilt(surface));
-}
 
 menu.addEventListener('click', event => { if (event.target.closest('a')) menu.open = false; });
 document.addEventListener('pointerdown', event => { if (!menu.contains(event.target)) menu.open = false; });
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape' && menu.open) { menu.open = false; menu.querySelector('summary').focus(); }
 });
-document.addEventListener('pointermove', event => {
-  if (reduceMotion.matches || !finePointer.matches || event.pointerType === 'touch' || scrollY > story.offsetHeight) return;
-  root.style.setProperty('--ambient-x', `${(event.clientX / innerWidth - .5) * 25}px`);
-  root.style.setProperty('--ambient-y', `${(event.clientY / innerHeight - .5) * 18}px`);
-}, { passive: true });
 
 cards.forEach(card => updateCount(card));
 root.classList.add('has-countdowns');

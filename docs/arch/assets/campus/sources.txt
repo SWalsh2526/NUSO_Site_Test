@@ -1,0 +1,14 @@
+deering: https://maps.northwestern.edu/txt/facility/124
+Image: https://maps.northwestern.edu/assets/Facilities/124.jpg
+
+tech: https://maps.northwestern.edu/txt/facility/132
+Image: https://maps.northwestern.edu/assets/Facilities/Northwestern-Technological-Institute.jpg
+
+university-hall: https://maps.northwestern.edu/txt/facility/120
+Image: https://maps.northwestern.edu/assets/Facilities/120.jpg
+
+meadow: https://maps.northwestern.edu/txt/facility/350
+Image: https://maps.northwestern.edu/assets/Facilities/350.jpg
+
+campus: https://www.northwestern.edu/
+Image: https://www.northwestern.edu/images/homepage/tiles/evanston-chicago.webp

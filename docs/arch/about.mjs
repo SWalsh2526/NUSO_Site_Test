@@ -1,6 +1,5 @@
 const root = document.documentElement;
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
 const entrances = [...document.querySelectorAll('[data-enter]')];
 const grids = [...document.querySelectorAll('.board-grid')];
 const counts = [...document.querySelectorAll('[data-count]')];
@@ -92,24 +91,6 @@ function observeEntrances() {
   }));
 }
 
-function resetTilt(surface) {
-  ['--tilt-x', '--tilt-y', '--glow-x', '--glow-y'].forEach(property => surface.style.removeProperty(property));
-}
-
-for (const surface of document.querySelectorAll('[data-tilt]')) {
-  surface.addEventListener('pointermove', event => {
-    if (reducedMotion.matches || !finePointer.matches || event.pointerType === 'touch') return;
-    const rect = surface.getBoundingClientRect();
-    const x = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
-    const y = Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height));
-    surface.style.setProperty('--tilt-x', `${(y - .5) * -4}deg`);
-    surface.style.setProperty('--tilt-y', `${(x - .5) * 4}deg`);
-    surface.style.setProperty('--glow-x', `${x * 100}%`);
-    surface.style.setProperty('--glow-y', `${y * 100}%`);
-  });
-  surface.addEventListener('pointerleave', () => resetTilt(surface));
-  surface.addEventListener('pointercancel', () => resetTilt(surface));
-}
 
 menu?.addEventListener('click', event => { if (event.target.closest('a')) menu.open = false; });
 document.addEventListener('pointerdown', event => { if (menu && !menu.contains(event.target)) menu.open = false; });
@@ -126,7 +107,6 @@ addEventListener('resize', () => {
   resizeFrame = requestAnimationFrame(observeEntrances);
 }, { passive: true });
 reducedMotion.addEventListener('change', () => {
-  document.querySelectorAll('[data-tilt]').forEach(resetTilt);
   observeEntrances();
 });
 document.addEventListener('visibilitychange', () => {
