@@ -1,42 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Invitational</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Outfit">
-  <style>
-    body {font-family: "Outfit", sans-serif;}
-  </style>
+  <meta name="theme-color" content="#241438">
+  <title>2027 Invitational | Northwestern University Science Olympiad</title>
+  <link rel="icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="home.css?v=29">
+  <link rel="stylesheet" href="pages.css?v=28">
+  <script type="module" src="about.mjs?v=17"></script>
 </head>
 <body>
-<div class="home">
-<div class="info">
-  <img class="logo", src="logo.png"/>
-  <nav>
-    <a href='index.html'><button class="homebutton">Home</button></a>
-    <a href='about.html'>About</a>
-    <a href='invitational.html'>Invitational</a>
-    <a href='results.html'>Past Tournaments</a>
-    <a href='volunteering.html'>Get Involved</a>
-    <a href='contact.html'>Contact</a>
-  </nav>
-</div>
-<div>
-<h1>2027 Invitational</h1>
-<hr>
-<p>Our sixth annual Division C Northwestern Invitational will take place in-person at our Evanston campus on February 20th, 2027.</p>
-<p> Our first annual Division B Northwestern Invitational will take place in-person at our Evanston campus on February 6th, 2027.</p>
-<div class="buttondiv">
-  <a href="https://www.northwestern.edu/docs/admissions/ev_campusmap.pdf"><button>CAMPUS MAP</button></a>
-  <a href="https://www.mccormick.northwestern.edu/contact/tech-room-finder.html"><button>TECH BUILDING MAP</button></a>
-</div>
-</div>
-<div>
-<h2>Tournament Information</h2>
-<p>To see information on the tournament's events and participating schools, visit the Scilympiad link below.</p>
-<a href="https://scilympiad.com/il-nu"><button>SCILYMPIAD</button></a>
-</div>
+<a class="skip-link" href="#top">Skip to content</a>
+<div class="atmosphere" aria-hidden="true"><div class="ambient-light"></div></div>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="NUSO home"><img src="assets/logo.png" width="34" height="38" alt=""><span>NUSO</span></a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="about.html">About</a><a href="results.html">Past Tournaments</a><a href="volunteering.html">Get Involved</a><a href="contact.html">Contact</a>
+      <a class="nav-action" href="invitational.html" aria-current="page">2027 Invitational <span aria-hidden="true">↗</span></a>
+    </nav>
+    <details class="mobile-menu">
+      <summary>Menu <span class="menu-icon" aria-hidden="true"><i></i><i></i></span></summary>
+      <nav aria-label="Mobile navigation"><a href="about.html">About</a><a href="invitational.html" aria-current="page">2027 Invitational</a><a href="results.html">Past Tournaments</a><a href="volunteering.html">Get Involved</a><a href="contact.html">Contact</a></nav>
+    </details>
+  </header>
+<main class="inner-content section" id="top"><header class="page-intro" data-enter><h1>2027 Invitational.</h1><p>Join us in person at Northwestern’s Evanston campus.</p></header><section class="invitational-schedule" aria-label="Tournament dates" data-enter>
+  <div class="invitational-date-row">
+    <div><h2>Division B</h2></div>
+    <time datetime="2027-02-06">February 6, 2027</time>
+  </div>
+  <div class="invitational-date-row">
+    <div><h2>Division C</h2></div>
+    <time datetime="2027-02-20">February 20, 2027</time>
+  </div>
+</section>
+<section class="tournament-information" data-enter><h2>Tournament information</h2><p>For tournament events, participating schools, and registration updates, visit Scilympiad.</p><a class="button button-primary" href="https://scilympiad.com/il-nu">Visit Scilympiad <span aria-hidden="true">↗</span></a></section><section class="maps-section" aria-labelledby="maps-heading"><div class="section-title" data-enter><h2 id="maps-heading">Finding your way.</h2></div><div class="resource-grid two-column board-grid"><article class="resource-card" data-enter><h2>Campus map</h2><p>Explore Northwestern’s Evanston campus.</p><a class="text-link" href="https://www.northwestern.edu/docs/admissions/ev_campusmap.pdf">Open campus map (PDF) <span aria-hidden="true">↗</span></a></article><article class="resource-card" data-enter><h2>Tech room finder</h2><p>Find a room in the Technological Institute.</p><a class="text-link" href="https://www.mccormick.northwestern.edu/contact/tech-room-finder.html">Open Tech room finder <span aria-hidden="true">↗</span></a></article></div></section></main>
+  <footer class="site-footer section"><div class="footer-top"><a class="brand" href="index.html"><img src="assets/logo.png" width="34" height="38" alt=""><span>NUSO</span></a><a class="text-link" href="#top">Back to top <span aria-hidden="true">↑</span></a></div><div class="footer-bottom"><p>Northwestern University<br>Science Olympiad</p><a class="footer-email" href="mailto:scienceolympiad@u.northwestern.edu">scienceolympiad@u.northwestern.edu</a><nav aria-label="Footer navigation"><a href="about.html">About</a><a href="results.html">Past Tournaments</a><a href="contact.html">Contact</a></nav></div></footer>
 </body>
 </html>
